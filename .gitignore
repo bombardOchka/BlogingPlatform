@@ -1,0 +1,10 @@
+# compiled output
+dist
+
+# Node modules
+node_modules
+package-lock.json
+
+
+# Environment variables, never commit this file
+.env

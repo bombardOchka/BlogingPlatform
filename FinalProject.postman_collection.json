@@ -1,0 +1,1298 @@
+{
+	"info": {
+		"_postman_id": "efaefd37-9447-4d9a-a214-b003ec96784d",
+		"name": "FinalProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33455627"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "/signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let emailConfirmToken = jsonData.emailConfirmToken\r",
+									"\r",
+									"    pm.collectionVariables.set(\"EMAIL_CONFIRM_TOKEN\", `${emailConfirmToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testUser\",\r\n    \"password\": \"qwerty1234\",\r\n    \"email\": \"fvvcvjfbhht@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/emailConfirm",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let accesToken = jsonData.token\r",
+									"    let refreshToken = jsonData.refreshToken\r",
+									"\r",
+									"    pm.collectionVariables.set(\"ACCES_TOKEN\", `${accesToken}`)\r",
+									"    pm.collectionVariables.set(\"REFRESH_TOKEN\", `${refreshToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{EMAIL_CONFIRM_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"830283\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/emailConfirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"emailConfirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									"if(jsonData){",
+									"    let accesToken = jsonData.token",
+									"    let refreshToken = jsonData.refreshToken",
+									"",
+									"    pm.collectionVariables.set(\"ACCES_TOKEN\", `${accesToken}`)",
+									"    pm.collectionVariables.set(\"REFRESH_TOKEN\", `${refreshToken}`)",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testUser\",\r\n    \"password\": \"qwerty1234\",\r\n    \"email\": \"fvvcvjfbhht@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testUser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/delete/6685769a177875212a9711ad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"delete",
+								"6685769a177875212a9711ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/user/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/refresh-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let accesToken = jsonData.token\r",
+									"\r",
+									"    pm.collectionVariables.set(\"ACCES_TOKEN\", `${accesToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{REFRESH_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/user/api/auth/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"api",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/setAdmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/user/setAdmin/66858671ec4f443fb0501dce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"setAdmin",
+								"66858671ec4f443fb0501dce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/requestPasswordReset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let requestPasswordResetToken = jsonData.requestPasswordResetToken\r",
+									"\r",
+									"    pm.collectionVariables.set(\"REQUEST_PASSWORD_CONFIRM_TOKEN\", `${requestPasswordResetToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fvvcvjfbhht@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/requestPasswordReset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"requestPasswordReset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/resetPasswordAcces",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let passwordResetToken = jsonData.passwordResetToken\r",
+									"\r",
+									"    pm.collectionVariables.set(\"PASSWORD_RESET_TOKEN\", `${passwordResetToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{REQUEST_PASSWORD_CONFIRM_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"288243\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/resetPasswordAcces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"resetPasswordAcces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/resetPassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()\r",
+									"\r",
+									"if(jsonData){\r",
+									"    let emailConfirmToken = jsonData.emailConfirmToken\r",
+									"\r",
+									"    pm.collectionVariables.set(\"EMAIL_CONFIRM_TOKEN\", `${emailConfirmToken}`)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{PASSWORD_RESET_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"qwerty1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/user/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"user",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "/post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hello World\",\r\n    \"body\": \"I love learning programming\",\r\n    \"category\": \"sport\",\r\n    \"image\": \"https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/posts/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"post"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/posts/get/66856ed3fbf09c17f5b0313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"get",
+								"66856ed3fbf09c17f5b0313a"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/posts/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"get"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/findByCategory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"sport\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/posts/findByCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"findByCategory"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/findByKeyWord/:title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/posts/findByKeyWord/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"findByKeyWord",
+								"hello"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/posts/delete/66856ed3fbf09c17f5b0313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"delete",
+								"66856ed3fbf09c17f5b0313a"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hello Ukraine!\",\r\n    \"body\": \"node.js\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/posts/put/66856ed3fbf09c17f5b0313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"put",
+								"66856ed3fbf09c17f5b0313a"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/patch",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hello Ukraine!\",\r\n    \"body\": \"node.js\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/posts/patch/66856ed3fbf09c17f5b0313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"posts",
+								"patch",
+								"66856ed3fbf09c17f5b0313a"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "/comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postID\": \"6686dd6768efde7619ff2fa2\",\r\n    \"body\": \"Wow, I really love it\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/comments/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/comments/get/6686df22ab5079c340e4e7ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"get",
+								"6686df22ab5079c340e4e7ed"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/comments/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"get"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/findByPost",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postID\": \"6686dd6768efde7619ff2fa2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/comments/findByPost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"findByPost"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/comments/delete/6686df22ab5079c340e4e7ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"delete",
+								"6686df22ab5079c340e4e7ed"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/patch",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"node.js\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1111/comments/patch/6686df22ab5079c340e4e7ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"comments",
+								"patch",
+								"6686df22ab5079c340e4e7ed"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "statistik",
+			"item": [
+				{
+					"name": "/posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/statistik/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"statistik",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/comments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/statistik/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"statistik",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/commentsByPost",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/statistik/commentsByPost/66899bf9b739385eac7b1646",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"statistik",
+								"commentsByPost",
+								"66899bf9b739385eac7b1646"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCES_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1111/statistik/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1111",
+							"path": [
+								"statistik",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:1111",
+			"type": "string"
+		},
+		{
+			"key": "ACCES_TOKEN",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjdjNmQ0Njc4Y2RiZWI5NThhZWMxNzgiLCJpYXQiOjE3MjAwMTkxMDYsImV4cCI6MTcyMDAyNTEwNn0.ebQz0bLFlNFe56FCFnn8goMErZC4KTr0WGPbZQDPhXA",
+			"type": "string"
+		},
+		{
+			"key": "REFRESH_TOKEN",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjdjNmQ0Njc4Y2RiZWI5NThhZWMxNzgiLCJyZWZyZXNoVG9rZW4iOnRydWUsImlhdCI6MTcyMDAxOTEwNiwiZXhwIjoxNzIwNjIzOTA2fQ.91YAFEnFmpUpEPqaF0ba12ov7HU_kHVgAlDaOScyS90",
+			"type": "string"
+		},
+		{
+			"key": "EMAIL_CONFIRM_TOKEN",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwicGFzc3dvcmQiOiIkMmIkMTAkRzZHZUxZQm4zMEdXNS5wSUxYbTAuZS50ZWtteHdHWjVzSnhudE93M04zUVhaTk5RczFZVXkiLCJlbWFpbCI6ImZ2dmN2amZiaGh0QGdtYWlsLmNvbSIsImNvZGUiOiIkMmIkMTAkbi5hVUNkSnFWMEF4YnBzT2ZlcTJpZXFtTTJmMGJ4ZDE5ZDEuU0pidWVmUElITGFBTWpHRlMiLCJpYXQiOjE3MjAyNjAyMTIsImV4cCI6MTcyMDI2MDgxMn0.pjz8_yIaYvMEsHMlnJpLxigojsiX1wG-zoyhXyMYJXw",
+			"type": "string"
+		},
+		{
+			"key": "REQUEST_PASSWORD_CONFIRM_TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PASSWORD_RESET_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

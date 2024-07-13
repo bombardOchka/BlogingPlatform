@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title Подтверждение электронной почты
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #4CAF50;
+      }
+      p {
+        font-size: 16px;
+      }
+      .code {
+        background: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+  body
+    .container
+      h1 Привет, #{username}!
+      p Спасибо за регистрацию на нашем сайте. Пожалуйста, подтвердите свой адрес электронной почты, используя следующий код:
+      p.code #{confirmationCode}
+      p Если вы не регистрировались на нашем сайте, проигнорируйте это сообщение.
+      p Спасибо!
+
