@@ -1,1 +1,13 @@
 # BlogingPlatform
+# My Node.js Project
+
+# Create .env file with this properties
+
+PORT = your_local_port
+JWT_CONFIG_TOKEN_PASSWORD=your_jwt_token_password
+JWT_CONFIG_REFRESH_TOKEN_PASSWORD=your_jwt_refresh_token_password
+JWT_CONFIG_EMAIL_CONFIRM_PASSWORD=your_jwt_email_confirm_token_password
+JWT_CONFIG_PASSWORD_CHANGING_PASSWORD=your_jwt_password_changing_token_password
+MONGO_URI=your_mongo_uri
+NODEMAILER_USER=your_nodemailer_user
+NODEMAILER_PASS=your_nodemailer_password
