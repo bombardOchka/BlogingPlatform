@@ -3,6 +3,7 @@
 
 # Create .env file with this properties
 
+```env
 PORT = your_local_port
 JWT_CONFIG_TOKEN_PASSWORD=your_jwt_token_password
 JWT_CONFIG_REFRESH_TOKEN_PASSWORD=your_jwt_refresh_token_password
